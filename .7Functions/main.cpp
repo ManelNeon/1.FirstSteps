@@ -110,7 +110,10 @@ int maximum(int& a, int* b){
 
 int main(){
     
-    FunctionByReference();
+    //FunctionByReference();
+    
+    resina();
+    
     
     return 0;
 }
