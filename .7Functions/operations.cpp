@@ -1,4 +1,5 @@
 #include <iostream>
+#include "compare.h"
 
 int DivideNumbers(int a, int b){
     if (b == 0){
