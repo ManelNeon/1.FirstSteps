@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="textureClasses.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="textureClasses.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -74,8 +78,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\GameDev\Programacao\NoEngineProjects\Libraries\SDL2\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\GameDev\Programacao\NoEngineProjects\Libraries\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\GameDev\Programacao\NoEngineProjects\Libraries\SDL2_Image\include;C:\GameDev\Programacao\NoEngineProjects\Libraries\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\GameDev\Programacao\NoEngineProjects\Libraries\SDL2_Image\lib\x64;C:\GameDev\Programacao\NoEngineProjects\Libraries\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -115,7 +119,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
