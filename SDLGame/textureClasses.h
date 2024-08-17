@@ -20,7 +20,7 @@ public:
 	void free();
 
 	//Renders texture at given point
-	void render(int x, int y, SDL_Renderer* gRenderer);
+	void render(int x, int y, SDL_Rect* clip, SDL_Renderer* gRenderer);
 
 	//Gets image dimensions
 	int getWidth();

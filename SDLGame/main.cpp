@@ -46,6 +46,8 @@ SDL_Renderer* gRenderer = NULL;
 LTexture gFooTexture;
 LTexture gBackgroundTexture;
 
+SDL_Rect gSpriteClips[4];
+LTexture gSpriteSheetTexture;
 
 //Current displayed Texture
 SDL_Texture* gTexture = NULL;
@@ -130,6 +132,39 @@ bool loadMedia()
 	//Loading success flag
 	bool success = true;
 
+	if (!gSpriteSheetTexture.loadFromFile("images/sprites.png", gRenderer)) {
+		printf("Failed to load sprite sheet texture!\n");
+		success = false;
+	}
+	else {
+
+		//Set top left sprite
+		gSpriteClips[0].x = 0;
+		gSpriteClips[0].y = 0;
+		gSpriteClips[0].w = 100;
+		gSpriteClips[0].h = 100;
+
+		//Set top right sprite
+		gSpriteClips[1].x = 100;
+		gSpriteClips[1].y = 0;
+		gSpriteClips[1].w = 100;
+		gSpriteClips[1].h = 100;
+
+		//Set bottom left sprite
+		gSpriteClips[2].x = 0;
+		gSpriteClips[2].y = 100;
+		gSpriteClips[2].w = 100;
+		gSpriteClips[2].h = 100;
+
+		//Set bottom right sprite
+		gSpriteClips[3].x = 100;
+		gSpriteClips[3].y = 100;
+		gSpriteClips[3].w = 100;
+		gSpriteClips[3].h = 100;
+	}
+
+	/*
+	//Loading different textures, in this case we took off the chroma key
 	if (!gFooTexture.loadFromFile("images/foo.png",gRenderer)) {
 		printf("Failed to load Foo' texture image!\n");
 		success = false;
@@ -139,6 +174,7 @@ bool loadMedia()
 		printf("Failed to load Background texture image!\n");
 		success = false;
 	}
+	*/
 
 	/*
 	//code for loading texture images
@@ -338,6 +374,25 @@ int main(int argc, char* args[])
 					}*/
 				}
 
+
+				//RENDERING DIFFERENT SPRITES FROM A SPRITESHEET, BANGEEEEEEER
+				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
+				SDL_RenderClear(gRenderer);
+
+				//top left sprite
+				gSpriteSheetTexture.render(0, 0, &gSpriteClips[0], gRenderer);
+
+				//top right sprite
+				gSpriteSheetTexture.render(SCREEN_WIDTH - gSpriteClips[1].w, 0, &gSpriteClips[1], gRenderer);
+
+				//bottom left sprite
+				gSpriteSheetTexture.render(0, SCREEN_HEIGHT - gSpriteClips[2].h, &gSpriteClips[2], gRenderer);
+
+				//bottom right sprite
+				gSpriteSheetTexture.render(SCREEN_WIDTH - gSpriteClips[3].w, SCREEN_HEIGHT - gSpriteClips[3].h, &gSpriteClips[3], gRenderer);
+
+				SDL_RenderPresent(gRenderer);
+
 				/*
 				//Apply the image stretched
 				SDL_Rect stretchRect;
@@ -432,6 +487,8 @@ int main(int argc, char* args[])
 				SDL_RenderPresent(gRenderer);
 				*/
 
+				/*
+				//Rendering different textures
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
 
@@ -440,6 +497,7 @@ int main(int argc, char* args[])
 				gFooTexture.render(240, 190, gRenderer);
 
 				SDL_RenderPresent(gRenderer);
+				*/
 			}
 		}
 	}
