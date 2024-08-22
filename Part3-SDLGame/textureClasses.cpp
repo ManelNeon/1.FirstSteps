@@ -6,6 +6,7 @@
 
 const int WALKING_ANIMATION_FRAMES = 4;
 
+//Texture Definitions
 LTexture::LTexture() {
 	//initialize
 	mTexture = NULL;
@@ -49,29 +50,6 @@ bool LTexture::loadFromFile(std::string path, SDL_Renderer* gRenderer) {
 	return mTexture != NULL;
 }
 
-bool LTexture::loadFromRenderedText(std::string textureText, SDL_Color textColor, TTF_Font* gFont, SDL_Renderer* gRenderer) {
-	free();
-
-	SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, textureText.c_str(), textColor);
-	if (textSurface == NULL) {
-		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
-	}
-	else {
-		mTexture = SDL_CreateTextureFromSurface(gRenderer,textSurface);
-		if (mTexture == NULL) {
-			printf("Unable to create texture from rendered text! SDL_Error: %s\n", SDL_GetError());
-		}
-		else {
-			mWidth = textSurface->w;
-			mHeight = textSurface->h;
-		}
-
-		SDL_FreeSurface(textSurface);
-	}
-
-	return mTexture != NULL;
-}
-
 void LTexture::free() {
 
 	if (mTexture != NULL) {
@@ -82,21 +60,8 @@ void LTexture::free() {
 	}
 }
 
-void LTexture::setColor(Uint8 red, Uint8 green, Uint8 blue) {
-	//Modulate texture
-	SDL_SetTextureColorMod(mTexture, red, green, blue);
-}
-
-void LTexture::setBlendMode(SDL_BlendMode blending) {
-	SDL_SetTextureBlendMode(mTexture, blending);
-}
-
-void LTexture::setAlpha(Uint8 alpha) {
-	SDL_SetTextureAlphaMod(mTexture, alpha);
-}
-
 void LTexture::render(int x, int y, SDL_Renderer* gRenderer, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip){
-	SDL_Rect renderQuad{ x , y , mWidth , mHeight };
+	SDL_Rect renderQuad{ x, y , mWidth , mHeight };
 
 	if (clip != NULL) {
 		renderQuad.w = clip->w;
@@ -112,4 +77,16 @@ int LTexture::getWidth() {
 
 int LTexture::getHeight() {
 	return mHeight;
+}
+
+
+//Block Definitions
+
+LBlock::LBlock() {
+	mPosition.x = 240;
+	mPosition.y = 0;
+}
+
+void LBlock::render(LTexture* blockTexture, SDL_Renderer* gRenderer) {
+	blockTexture->render(mPosition.x, mPosition.y, gRenderer);
 }
