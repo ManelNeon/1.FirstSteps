@@ -47,9 +47,11 @@ LTexture gTextTexture;
 
 LTexture gFooTexture;
 
-const int WALKING_ANIMATION_FRAMES = 4;
+LTexture gButtonSpriteSheet;
 
-SDL_Rect gSpriteClips[WALKING_ANIMATION_FRAMES];
+SDL_Rect gSpriteClips[TOTAL_BUTTONS];
+
+LButton gButtons[TOTAL_BUTTONS];
 
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
@@ -68,7 +70,7 @@ bool init()
 	else
 	{
 		//Create window
-		gWindow = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
+		gWindow = SDL_CreateWindow("Tetris", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
 		{
 			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -122,6 +124,7 @@ bool loadMedia()
 	//Loading success flag
 	bool success = true;
 	
+	/*
 	if (!gFooTexture.loadFromFile("images/fooWalking.png", gRenderer)) {
 		printf("Could not load foo's spritesheet!\n");
 		success = false;
@@ -161,6 +164,28 @@ bool loadMedia()
 			printf("Failed to render texture!\n");
 			success = false;
 		}
+	}*/
+
+	//Load sprites
+
+	if (!gButtonSpriteSheet.loadFromFile("images/button.png", gRenderer)) {
+		printf("Failed to load the button sprite sheet!\n");
+		success = false;
+	}
+	else {
+
+		for (int i = 0; i < TOTAL_BUTTONS; ++i) {
+			gSpriteClips[i].x = 0;
+			gSpriteClips[i].y = i * 200;
+			gSpriteClips[i].w = BUTTON_WIDTH;
+			gSpriteClips[i].h = BUTTON_HEIGHT;
+		}
+
+		//Set buttons in corners
+		gButtons[0].setPosition(0, 0);
+		gButtons[1].setPosition(SCREEN_WIDTH - BUTTON_WIDTH, 0);
+		gButtons[2].setPosition(0, SCREEN_HEIGHT - BUTTON_HEIGHT);
+		gButtons[3].setPosition(SCREEN_WIDTH - BUTTON_WIDTH, SCREEN_HEIGHT - BUTTON_HEIGHT);
 	}
 
 	return success;
@@ -171,6 +196,8 @@ void close()
 {
 	gTextTexture.free();
 	gFooTexture.free();
+	gButtonSpriteSheet.free();
+
 
 	TTF_CloseFont(gFont);
 	gFont = NULL;
@@ -230,6 +257,12 @@ int main(int argc, char* args[])
 					{
 						quit = true;
 					}
+
+					for (int i = 0; i < TOTAL_BUTTONS; ++i) {
+						gButtons[i].handleEvent(&e);
+					}
+					/*
+					//changing rotation
 					else if (e.type == SDL_KEYDOWN) {
 						switch (e.key.keysym.sym) {
 							case SDLK_a:
@@ -248,32 +281,39 @@ int main(int argc, char* args[])
 								flipType = SDL_FLIP_VERTICAL;
 								break;
 						}
-					}
+					}*/
 				}
-
 				//clear screen
 				SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 				SDL_RenderClear(gRenderer);
-				
+
+				for (int i = 0; i < TOTAL_BUTTONS; ++i) {
+					gButtons[i].render(&gButtonSpriteSheet , gRenderer, &gSpriteClips[gButtons[i].mCurrentSprite]);
+				}
+
+				SDL_RenderPresent(gRenderer);
+
+				/*
 				//making the frames cycle
 				SDL_Rect* currentClip = &gSpriteClips[frame / 8];
 				gFooTexture.render((SCREEN_WIDTH - currentClip->w) / 2, (SCREEN_HEIGHT - currentClip->h) / 2, gRenderer , currentClip, degrees, NULL, flipType);
 
+				gTextTexture.loadFromRenderedText("Welcome To Tetris!", color, gFont, gRenderer);
 				gTextTexture.render((SCREEN_WIDTH - gTextTexture.getWidth()) / 2, SCREEN_HEIGHT - 50, gRenderer);
 
 				SDL_RenderPresent(gRenderer);
 
 				++frame;
-				
+
 				if (frame / 8 >= WALKING_ANIMATION_FRAMES) {
 					frame = 0;
 				}
+				*/
 			}
 		}
 	}
-
 	//Free resources and close SDL
 	close();
-
+	
 	return 0;
 }
