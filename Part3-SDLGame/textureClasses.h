@@ -50,13 +50,4 @@ private:
 
 };
 
-class LBlock{
-public:
-	LBlock();
-
-	void render(LTexture* blockTexture, SDL_Renderer* gRenderer);
-
-	SDL_Point mPosition;
-};
-
 #endif // !TEXTURECLASSES_H

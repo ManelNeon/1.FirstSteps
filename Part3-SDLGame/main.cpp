@@ -11,8 +11,8 @@ and may not be redistributed without written permission.*/
 #include "textureClasses.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 480;
-const int SCREEN_HEIGHT = 640;
+const int SCREEN_WIDTH = 640;
+const int SCREEN_HEIGHT = 480;
 
 //Starts up SDL and creates window
 bool init();
@@ -29,13 +29,20 @@ SDL_Window* gWindow = NULL;
 //The window we'll be rendering to
 SDL_Renderer* gRenderer = NULL;
 
-//rendered texture
-LTexture gBlockTexture;
-
-LBlock gBlock;
-
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
+
+/*
+LTexture gPressTexture;
+
+LTexture gUpTexture;
+
+LTexture gDownTexture;
+
+LTexture gLeftTexture;
+
+LTexture gRightTexture;
+*/
 
 bool init()
 {
@@ -80,11 +87,32 @@ bool init()
 
 bool loadMedia()
 {
-	//Load sprites
-	if (!gBlockTexture.loadFromFile("images/tetrisBlock.png", gRenderer)) {
-		printf("Couldn't load tetrisBlock image!\n");
+	/*
+	if (!gPressTexture.loadFromFile("images/press.bmp", gRenderer)) {
+		printf("Couldn't load press image!\n");
 		return false;
 	}
+
+	if (!gUpTexture.loadFromFile("images/up.bmp", gRenderer)) {
+		printf("Couldn't load up image!\n");
+		return false;
+	}
+
+	if (!gDownTexture.loadFromFile("images/down.bmp", gRenderer)) {
+		printf("Couldn't load down image!\n");
+		return false;
+	}
+
+	if (!gLeftTexture.loadFromFile("images/left.bmp", gRenderer)) {
+		printf("Couldn't load left image!\n");
+		return false;
+	}
+
+	if (!gRightTexture.loadFromFile("images/right.bmp", gRenderer)) {
+		printf("Couldn't load right image!\n");
+		return false;
+	}
+	*/
 
 	return true;
 }
@@ -92,7 +120,15 @@ bool loadMedia()
 
 void close()
 {
-	gBlockTexture.free();
+	//Free Textures
+	/*
+	gPressTexture.free();
+	gUpTexture.free();
+	gDownTexture.free();
+	gLeftTexture.free();
+	gRightTexture.free();
+	*/
+
 
 	//Destroy window
 	SDL_DestroyRenderer(gRenderer);
@@ -100,6 +136,7 @@ void close()
 	gWindow = NULL;
 	gRenderer = NULL;
 
+	//Getting off Subsystems
 	IMG_Quit();
 	SDL_Quit();
 }
@@ -124,11 +161,7 @@ int main(int argc, char* args[])
 	//Event handler
 	SDL_Event e;
 
-	//Angle of rotation
-	double degrees = 0;
-
-	//Flip type
-	SDL_RendererFlip flipType = SDL_FLIP_NONE;
+	LTexture* currentTexture = NULL;
 
 	//While application is running
 	while (true){
@@ -142,28 +175,33 @@ int main(int argc, char* args[])
 				close();
 				return 0;
 			}
-			if (e.type == SDL_KEYDOWN) {
-
-				switch (e.key.keysym.sym) {
-					case SDLK_a:
-						if (gBlock.mPosition.x - 1 >= 0) { gBlock.mPosition.x -= 1; }
-						break;
-					case SDLK_d:
-						if (gBlock.mPosition.x + 1 <= 420) { gBlock.mPosition.x += 1; }
-						break;
-				}
-			}
 		}
-
+		/*
+		//With this code we're able to get the keyboard state, what this does different from the previous way is that it checks if the player is still holding and only does the action
+		//when the player is holding the key. In this case if we're not pressing anything, we're getting the press texture. I think this is better for movement!
+		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+		
+		if (currentKeyStates[SDL_SCANCODE_UP]) {
+			currentTexture = &gUpTexture;
+		}
+		else if (currentKeyStates[SDL_SCANCODE_DOWN]) {
+			currentTexture = &gDownTexture;
+		}
+		else if (currentKeyStates[SDL_SCANCODE_LEFT]) {
+			currentTexture = &gLeftTexture;
+		}
+		else if (currentKeyStates[SDL_SCANCODE_RIGHT]) {
+			currentTexture = &gRightTexture;
+		}
+		else{
+			currentTexture = &gPressTexture;
+		}*/
+		
 		//clear screen
 		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 		SDL_RenderClear(gRenderer);
 
-		gBlock.render(&gBlockTexture, gRenderer);
-
-		if (gBlock.mPosition.y < 580) {
-			gBlock.mPosition.y += 1;
-		}
+		//currentTexture->render(0, 0, gRenderer);
 
 		SDL_RenderPresent(gRenderer);
 	}

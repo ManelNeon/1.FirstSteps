@@ -3,7 +3,6 @@
 #include <SDL_ttf.h>
 #include <SDL_image.h>
 
-
 const int WALKING_ANIMATION_FRAMES = 4;
 
 //Texture Definitions
@@ -77,16 +76,4 @@ int LTexture::getWidth() {
 
 int LTexture::getHeight() {
 	return mHeight;
-}
-
-
-//Block Definitions
-
-LBlock::LBlock() {
-	mPosition.x = 240;
-	mPosition.y = 0;
-}
-
-void LBlock::render(LTexture* blockTexture, SDL_Renderer* gRenderer) {
-	blockTexture->render(mPosition.x, mPosition.y, gRenderer);
 }
