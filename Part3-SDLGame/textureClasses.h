@@ -5,11 +5,6 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 
-const int BUTTON_WIDTH = 300;
-const int BUTTON_HEIGHT = 200;
-
-const int TOTAL_BUTTONS = 4;
-
 enum LButtonSprite
 {
 	BUTTON_SPRITE_MOUSE_OUT = 0,
@@ -30,6 +25,8 @@ public:
 	//Loads image from specified path
 	bool loadFromFile(std::string path, SDL_Renderer* gRenderer);
 
+	bool loadFromRenderedText(std::string textureText, SDL_Color textColor, SDL_Renderer* gRenderer, TTF_Font* gFont);
+
 	//Deallocates memory
 	void free();
 
@@ -48,6 +45,50 @@ private:
 	int mWidth;
 	int mHeight;
 
+};
+
+class LTimer {
+public:
+	LTimer();
+
+	void start();
+	void stop();
+	void pause();
+	void unpause();
+
+	Uint32 getTicks();
+
+	bool isStarted();
+	bool isPaused();
+
+private:
+	Uint32 mStartTicks;
+
+	Uint32 mPausedTicks;
+
+	bool mPaused;
+	bool mStarted;
+};
+
+class Dot {
+public:
+	static const int DOT_WIDTH = 20;
+	static const int DOT_HEIGHT = 20;
+
+	static const int DOT_VEL = 10;
+
+	Dot();
+
+	void handleEvent(SDL_Event& e);
+
+	void move();
+
+	void render(LTexture& imageTexture, SDL_Renderer* gRenderer);
+
+private:
+	int mPosX, mPosY;
+
+	int mVelX, mVelY;
 };
 
 #endif // !TEXTURECLASSES_H

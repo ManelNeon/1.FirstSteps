@@ -4,20 +4,7 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_ttf.h>
-
-const int BUTTON_WIDTH = 300;
-const int BUTTON_HEIGHT = 200;
-
-const int TOTAL_BUTTONS = 4;
-
-enum LButtonSprite
-{
-	BUTTON_SPRITE_MOUSE_OUT = 0,
-	BUTTON_SPRITE_MOUSE_OVER_MOTION = 1,
-	BUTTON_SPRITE_MOUSE_DOWN = 2,
-	BUTTON_SPRITE_MOUSE_UP = 3,
-	BUTTON_SPRITE_TOTAL = 4
-};
+#include "constantVariables.h"
 
 class LTexture {
 public:
@@ -28,13 +15,13 @@ public:
 	~LTexture();
 
 	//Loads image from specified path
-	bool loadFromFile(std::string path, SDL_Renderer* gRenderer);
+	bool loadFromFile(std::string path);
 
 	//Deallocates memory
 	void free();
 
 	//Renders texture at given point
-	void render(int x, int y, SDL_Renderer* gRenderer, SDL_Rect* clip = NULL, double angle = 0.0 , SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void render(int x, int y, SDL_Rect* clip = NULL, double angle = 0.0 , SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	//Gets image dimensions
 	int getWidth();
@@ -54,9 +41,53 @@ class LBlock{
 public:
 	LBlock();
 
-	void render(LTexture* blockTexture, SDL_Renderer* gRenderer);
+	static const int OBJECT_WIDTH = 60;
+	static const int OBJECT_HEIGHT = 60;
 
-	SDL_Point mPosition;
+	static const int OBJECT_VEL = 1;
+
+	void handleEvent(SDL_Event& e);
+
+	void move();
+
+	void render(LTexture* blockTexture);
+
+	bool getIsFalling();
+
+	int getColumn();
+
+	int getRow();
+
+private:
+	int mPosX, mPosY;
+	
+	bool isFalling;
+
+	int column;
+
+	int row;
 };
 
+class LTimer {
+public:
+	LTimer();
+
+	void start();
+	void stop();
+	void pause();
+	void unpause();
+
+	Uint32 getTicks();
+
+	bool isStarted();
+	bool isPaused();
+
+private:
+	Uint32 mStartTicks;
+
+	Uint32 mPausedTicks;
+
+	bool mPaused;
+	bool mStarted;
+};
 #endif // !TEXTURECLASSES_H

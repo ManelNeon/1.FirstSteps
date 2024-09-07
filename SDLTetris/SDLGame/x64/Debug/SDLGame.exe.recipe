@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\GameDev\Programacao\NoEngineProjects\C++Learning\Part3-SDLGame\x64\Debug\SDLGame.exe</FullPath>
+      <FullPath>C:\GameDev\Programacao\NoEngineProjects\C++Learning\SDLTetris\x64\Debug\SDLGame.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

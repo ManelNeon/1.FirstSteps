@@ -1,42 +1,22 @@
-/*This source code copyrighted by Lazy Foo' Productions 2004-2024
-and may not be redistributed without written permission.*/
-
-//Using SDL and standard IO
+//SDL Libraries
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
+
+//Standard Libraries
+#include <vector>
 #include <stdio.h>
 #include <string>
-#include <cmath>
+
+//Header Objects
 #include "textureClasses.h"
-
-//Screen dimension constants
-const int SCREEN_WIDTH = 480;
-const int SCREEN_HEIGHT = 640;
-
-//Starts up SDL and creates window
-bool init();
-
-//Loads media
-bool loadMedia();
-
-//Frees media and shuts down SDL
-void close();
-
-//The window we'll be rendering to
-SDL_Window* gWindow = NULL;
-
-//The window we'll be rendering to
-SDL_Renderer* gRenderer = NULL;
+#include "constantVariables.h"
 
 //rendered texture
 LTexture gBlockTexture;
 
-LBlock gBlock;
-
-//The surface contained by the window
-SDL_Surface* gScreenSurface = NULL;
-
+//Starts up SDL and creates window
 bool init()
 {
 	//Initialize SDL
@@ -77,11 +57,11 @@ bool init()
 	return true;
 }
 
-
+//Loads media
 bool loadMedia()
 {
 	//Load sprites
-	if (!gBlockTexture.loadFromFile("images/tetrisBlock.png", gRenderer)) {
+	if (!gBlockTexture.loadFromFile("images/tetrisBlock.png")) {
 		printf("Couldn't load tetrisBlock image!\n");
 		return false;
 	}
@@ -89,7 +69,7 @@ bool loadMedia()
 	return true;
 }
 
-
+//Frees media and shuts down SDL
 void close()
 {
 	gBlockTexture.free();
@@ -103,7 +83,6 @@ void close()
 	IMG_Quit();
 	SDL_Quit();
 }
-
 
 int main(int argc, char* args[])
 {
@@ -124,47 +103,87 @@ int main(int argc, char* args[])
 	//Event handler
 	SDL_Event e;
 
-	//Angle of rotation
-	double degrees = 0;
+	LTimer capTimer;
 
-	//Flip type
-	SDL_RendererFlip flipType = SDL_FLIP_NONE;
+	LTimer blockFallTimer;
+
+	blockFallTimer.start();
+
+	LBlock* pBlock = NULL;
 
 	//While application is running
 	while (true){
 
-		//Handle events on queue
+		//starting the capTimer, which limits our framerate to 60
+		capTimer.start();
+
+		//in here we check if pBlock is NULL, in case it is, we allocate new memory and basically create a new block
+		if (pBlock == NULL) {
+			pBlock = new LBlock;
+		}
+
+		//Handle events on queue, basically handle input from the player, in here is where we close the game and also delete every allocated memory
 		while (SDL_PollEvent(&e) != 0){
 
 			//User requests quit
 			if (e.type == SDL_QUIT){
 
+				for (size_t i{ 0 }; i < 80; ++i) {
+					delete digitalBoard[i];
+					digitalBoard[i] = NULL;
+				}
+
+				delete pBlock;
+				pBlock = NULL;
 				close();
 				return 0;
 			}
-			if (e.type == SDL_KEYDOWN) {
 
-				switch (e.key.keysym.sym) {
-					case SDLK_a:
-						if (gBlock.mPosition.x - 1 >= 0) { gBlock.mPosition.x -= 1; }
-						break;
-					case SDLK_d:
-						if (gBlock.mPosition.x + 1 <= 420) { gBlock.mPosition.x += 1; }
-						break;
-				}
-			}
+			//we move the block the player is controlling
+			pBlock->handleEvent(e);
 		}
 
+		//every 2 seconds we move the block down, and restart the timer
+		if (blockFallTimer.getTicks() == 200) {
+			pBlock->move();
+			blockFallTimer.stop();
+			blockFallTimer.start();
+		}
+
+		//RENDERING THE SCREEN
+		
 		//clear screen
 		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 		SDL_RenderClear(gRenderer);
 
-		gBlock.render(&gBlockTexture, gRenderer);
-
-		if (gBlock.mPosition.y < 580) {
-			gBlock.mPosition.y += 1;
+		//checking if there's any blocks to render
+		for (size_t i { 0 }; i < 80; ++i) {
+			if (digitalBoard[i]) {
+				digitalBoard[i]->render(&gBlockTexture);
+			}
 		}
 
+		//rendering the block the player is controlling
+		pBlock->render(&gBlockTexture);
+
+		//updating the render
 		SDL_RenderPresent(gRenderer);
+
+
+		//CHECKS
+
+		//in here we check if the block is still falling, if not, we save it in the digital board and then we put the pblock to null
+		if (!pBlock->getIsFalling()) {
+			digitalBoard[pBlock->getRow() * pBlock->getColumn()] = pBlock;
+			pBlock = NULL;
+		}
+
+		//frame limiter
+		int frameTicks = capTimer.getTicks();
+		if (frameTicks < SCREEN_TICKS_PER_FRAME)
+		{
+			//Wait remaining time
+			SDL_Delay(SCREEN_TICKS_PER_FRAME - frameTicks);
+		}
 	}
 }
