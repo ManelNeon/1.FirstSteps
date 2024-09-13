@@ -206,7 +206,7 @@ int main(int argc, char* args[])
 		}		
 
 		//every 2 seconds we move the block down, and restart the timer
-		if (blockFallTimer.getTicks() >= 200) {
+		if (blockFallTimer.getTicks() >= 500) {
 			pBlock->move();
 			blockFallTimer.stop();
 			blockFallTimer.start();

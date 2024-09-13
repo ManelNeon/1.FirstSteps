@@ -1,2 +1,5 @@
-﻿  main.cpp
+﻿  constantVariables.cpp
+  main.cpp
+  textureClasses.cpp
+  Gerando Código...
   SDLGame.vcxproj -> C:\GameDev\Programacao\NoEngineProjects\C++Learning\SDLTetris\x64\Debug\SDLGame.exe

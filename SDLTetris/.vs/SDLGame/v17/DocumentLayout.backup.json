@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:constantVariables.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:constantVariables.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\textureClasses.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -19,8 +19,8 @@
       "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:textureClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:constantVariables.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:constantVariables.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAOMAAAAAAAAAAAAAAPQAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAowMYAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-12T15:13:47.086Z",
               "EditorCaption": ""
@@ -53,7 +53,7 @@
               "RelativeDocumentMoniker": "textureClasses.cpp",
               "ToolTip": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\textureClasses.cpp",
               "RelativeToolTip": "textureClasses.cpp",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-16T16:46:12.213Z",
               "EditorCaption": ""
@@ -73,7 +73,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "constantVariables.h",
               "DocumentMoniker": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.h",
               "RelativeDocumentMoniker": "constantVariables.h",
@@ -86,7 +86,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "constantVariables.cpp",
               "DocumentMoniker": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.cpp",
               "RelativeDocumentMoniker": "constantVariables.cpp",
