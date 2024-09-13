@@ -1,9 +1,17 @@
-#include "textureClasses.h"
-#include <stdio.h>
+//SDL Libraries
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
+
+//Standard libraries
+#include <stdio.h>
+
+//Header Files
+#include "textureClasses.h"
+
 
 //Texture Definitions
+//base constructor for the LTexture class
 LTexture::LTexture() {
 	//initialize
 	mTexture = NULL;
@@ -11,11 +19,13 @@ LTexture::LTexture() {
 	mHeight = 0;
 }
 
+//base destructor for the LTexture class
 LTexture::~LTexture() {
 	//deallocate
 	free();
 }
 
+//loading an image into a texture
 bool LTexture::loadFromFile(std::string path) {
 	//Get rid of previous texture
 	free();
@@ -53,6 +63,31 @@ bool LTexture::loadFromFile(std::string path) {
 	return mTexture != NULL;
 }
 
+bool LTexture::loadFromRenderedText(std::string textureText, SDL_Color textColor) {
+
+	free();
+
+	SDL_Surface* textSurface = TTF_RenderText_Solid(gFont, textureText.c_str(), textColor);
+	if (textSurface == NULL) {
+		printf("Unable to render text surface! SDL_ttf Error: %s\n", TTF_GetError());
+	}
+	else {
+		mTexture = SDL_CreateTextureFromSurface(gRenderer, textSurface);
+		if (mTexture == NULL) {
+			printf("Unable to create texture from rendered text! SDL_Error: %s\n", SDL_GetError());
+		}
+		else {
+			mWidth = textSurface->w;
+			mHeight = textSurface->h;
+		}
+
+		SDL_FreeSurface(textSurface);
+	}
+
+	return mTexture != NULL;
+}
+
+//getting rid of previous memory
 void LTexture::free() {
 
 	if (mTexture != NULL) {
@@ -63,6 +98,7 @@ void LTexture::free() {
 	}
 }
 
+//rendering the texture on the screen
 void LTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* center, SDL_RendererFlip flip){
 	SDL_Rect renderQuad{ x, y , mWidth , mHeight };
 
@@ -74,10 +110,12 @@ void LTexture::render(int x, int y, SDL_Rect* clip, double angle, SDL_Point* cen
 	SDL_RenderCopyEx( gRenderer, mTexture , clip, &renderQuad, angle, center, flip);
 }
 
+//getting the texture's width
 int LTexture::getWidth() {
 	return mWidth;
 }
 
+//getting the textures height
 int LTexture::getHeight() {
 	return mHeight;
 }
@@ -99,36 +137,36 @@ void LBlock::handleEvent(SDL_Event& e) {
 	if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
 		switch (e.key.keysym.sym) {;
 			case SDLK_RIGHT:
-				if (!digitalBoard[row*(column + 1)]) {
+				if (!digitalBoard[row * 8 + (column + 1)] && column + 1 <= 7) {
 					column++;
 					mPosX += 60;
 				}
 				break;
 			case SDLK_LEFT: 
-				if (!digitalBoard[row*(column - 1)]) {
+				if (!digitalBoard[row * 8 + (column - 1)] && column - 1 >= 0) {
 					column--;
 					mPosX -= 60;
 				}
 				break;
-			case SDLK_DOWN:
-				if (!digitalBoard[(row + 1) * column]) {
-					row++;
-					mPosY += 60;
-				}
 		}
 	}
 }
 
 void LBlock::move() {
 
-	if (!digitalBoard[(row + 1) * column]) {
-		row++;
-		mPosY += 60;
-	}
-
-	if (digitalBoard[(row + 1) * column] && isFalling) {
+	if ((digitalBoard[(row + 1) * 8 + column] && isFalling) || row >= 9) {
+		Mix_PlayChannel(-1, gBlockFallen, 0);
 		isFalling = false;
 	}
+
+	if (isFalling) {
+		moveDown();
+	}
+}
+
+void LBlock::moveDown() {
+	row++;
+	mPosY += 60;
 }
 
 void LBlock::render(LTexture* blockTexture) {

@@ -1,8 +1,17 @@
 #ifndef CONSTANTVARIABLES_H
 #define CONSTANTVARIABLES_H
 
+//SDL Libraries
 #include <SDL.h>
+#include <SDL_mixer.h>
+#include <SDL_ttf.h>
+
+//Header Files
 #include "textureClasses.h"
+
+class LBlock;
+
+class LTexture;
 
 //Screen Dimension Constants
 extern const int SCREEN_WIDTH;
@@ -20,6 +29,18 @@ extern SDL_Renderer* gRenderer;
 
 //The surface contained by the window
 extern SDL_Surface* gScreenSurface;
+
+extern Mix_Music* gMusic;
+
+extern Mix_Chunk* gBlockFallen;
+
+extern Mix_Chunk* gLineCleared;
+
+extern int gScore;
+
+extern LBlock* pBlock;
+
+extern TTF_Font* gFont;
 
 //rows and columns
 extern LBlock* digitalBoard[80];

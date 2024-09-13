@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\Part2-SDLGame\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AQIAACABAAAAAAAAAAAAACIBAABhAAAA",
+              "ViewState": "AgIAABQBAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-12T15:13:47.086Z",
               "EditorCaption": ""
@@ -45,7 +45,7 @@
               "RelativeDocumentMoniker": "textureClasses.cpp",
               "ToolTip": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\Part2-SDLGame\\textureClasses.cpp",
               "RelativeToolTip": "textureClasses.cpp",
-              "ViewState": "AQIAAI0AAAAAAAAAAAAAANoAAABIAAAA",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAADcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-16T16:46:12.213Z",
               "EditorCaption": ""
@@ -60,8 +60,7 @@
               "RelativeToolTip": "textureClasses.h",
               "ViewState": "AQIAADkAAAAAAAAAAAAAAFUAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-08-16T16:46:03.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-16T16:46:03.018Z"
             }
           ]
         }

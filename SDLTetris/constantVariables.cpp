@@ -1,7 +1,7 @@
 #include "constantVariables.h"
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 480;
+const int SCREEN_WIDTH = 720; //480
 const int SCREEN_HEIGHT = 600;
 
 //FPS Limiter
@@ -17,7 +17,19 @@ SDL_Renderer* gRenderer = NULL;
 //The surface contained by the window
 SDL_Surface* gScreenSurface = NULL;
 
-//rows and columns rows * columns (10 * 8)
+Mix_Music* gMusic = NULL;
+
+Mix_Chunk* gBlockFallen = NULL;
+
+Mix_Chunk* gLineCleared = NULL;
+
+int gScore = NULL;
+
+LBlock* pBlock = NULL;
+
+TTF_Font* gFont = NULL;
+
+//rows and columns (row * 8 + column)
 LBlock* digitalBoard[80] = {
 	NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 	NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL,

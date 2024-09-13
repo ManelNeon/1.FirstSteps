@@ -1,9 +1,13 @@
 #ifndef TEXTURECLASSES_H
 #define TEXTURECLASSES_H
 
-#include <string>
+//SDL libraries
 #include <SDL.h>
-#include <SDL_ttf.h>
+
+//Standard Libraries
+#include <string>
+
+//Header Files
 #include "constantVariables.h"
 
 class LTexture {
@@ -16,6 +20,8 @@ public:
 
 	//Loads image from specified path
 	bool loadFromFile(std::string path);
+
+	bool loadFromRenderedText(std::string textureText, SDL_Color textColor);
 
 	//Deallocates memory
 	void free();
@@ -49,6 +55,8 @@ public:
 	void handleEvent(SDL_Event& e);
 
 	void move();
+	
+	void moveDown();
 
 	void render(LTexture* blockTexture);
 
