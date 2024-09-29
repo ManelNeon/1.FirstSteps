@@ -7,20 +7,20 @@
       "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:constantVariables.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:constantVariables.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\textureClasses.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:textureClasses.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\textureClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:textureClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:constantVariables.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:constantVariables.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\textureClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{682C252D-DD22-432E-A5DA-613A760BC437}|SDLGame.vcxproj|solutionrelative:textureClasses.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAMIAAAAAAAAAAAAowMYAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAALAAAAAAAAAAAAAAAO8AAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-08-12T15:13:47.086Z",
               "EditorCaption": ""
@@ -55,12 +55,11 @@
               "RelativeToolTip": "textureClasses.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-08-16T16:46:12.213Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-16T16:46:12.213Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "textureClasses.h",
               "DocumentMoniker": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\textureClasses.h",
               "RelativeDocumentMoniker": "textureClasses.h",
@@ -68,12 +67,11 @@
               "RelativeToolTip": "textureClasses.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-08-16T16:46:03.018Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-08-16T16:46:03.018Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "constantVariables.h",
               "DocumentMoniker": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.h",
               "RelativeDocumentMoniker": "constantVariables.h",
@@ -81,21 +79,19 @@
               "RelativeToolTip": "constantVariables.h",
               "ViewState": "AgIAABEAAAAAAAAAAAAuwCQAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2024-09-02T14:37:17.366Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T14:37:17.366Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "constantVariables.cpp",
               "DocumentMoniker": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.cpp",
               "RelativeDocumentMoniker": "constantVariables.cpp",
               "ToolTip": "C:\\GameDev\\Programacao\\NoEngineProjects\\C\u002B\u002BLearning\\SDLTetris\\constantVariables.cpp",
               "RelativeToolTip": "constantVariables.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAowCIAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2024-09-02T14:37:23.321Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-02T14:37:23.321Z"
             }
           ]
         }

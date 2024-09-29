@@ -122,6 +122,8 @@ bool loadMedia()
 void close()
 {
 	gBlockTexture.free();
+	gScoreTextTexture.free();
+	gScoreValueTexture.free();
 
 	TTF_CloseFont(gFont);
 	gFont = NULL;
@@ -138,6 +140,19 @@ void close()
 	SDL_Quit();
 }
 
+void update() {
+
+}
+
+void handleEvents() {
+
+}
+
+void render() {
+
+}
+
+//Quits the game
 int quitGame() {
 
 	for (size_t i{ 0 }; i < 80; ++i) {
@@ -176,7 +191,7 @@ int main(int argc, char* args[])
 
 	blockFallTimer.start();
 
-	Mix_VolumeMusic(1);
+	Mix_VolumeMusic(25);
 
 	//While application is running
 	while (true){
@@ -188,10 +203,14 @@ int main(int argc, char* args[])
 		//starting the capTimer, which limits our framerate to 60
 		capTimer.start();
 
+		update();
+
 		//in here we check if pBlock is NULL, in case it is, we allocate new memory and basically create a new block
 		if (pBlock == NULL) {
 			pBlock = new LBlock;
 		}
+
+		handleEvents();
 
 		//Handle events on queue, basically handle input from the player, in here is where we close the game and also delete every allocated memory
 		while (SDL_PollEvent(&e) != 0){
@@ -217,6 +236,8 @@ int main(int argc, char* args[])
 			printf("Unable to render score texture!\n");
 			return 0;
 		}
+
+		render();
 
 		//RENDERING THE SCREEN
 		
