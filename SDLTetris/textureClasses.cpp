@@ -5,6 +5,7 @@
 
 //Standard libraries
 #include <stdio.h>
+#include <random>
 
 //Header Files
 #include "textureClasses.h"
@@ -130,6 +131,8 @@ LBlock::LBlock() {
 
 	column = 0;
 	row = 0;
+
+	numberOfPieces = rand() % 2 + 1;
 }
 
 void LBlock::handleEvent(SDL_Event& e) {
@@ -148,6 +151,19 @@ void LBlock::handleEvent(SDL_Event& e) {
 					mPosX -= 60;
 				}
 				break;
+			case SDLK_SPACE:
+				for (int i{ 9 }; i >= 0; --i) {
+					if (digitalBoard[i * 8 + column]) {
+						continue;
+					}
+
+					row = i;
+					moveDown();
+					Mix_PlayChannel(-1, gBlockFallen, 0);
+					isFalling = false;
+					break;
+				}
+				break;
 		}
 	}
 }
@@ -160,17 +176,19 @@ void LBlock::move() {
 	}
 
 	if (isFalling) {
+		row++;
 		moveDown();
 	}
 }
 
 void LBlock::moveDown() {
-	row++;
-	mPosY += 60;
+	mPosY = 60 * row;
 }
 
 void LBlock::render(LTexture* blockTexture) {
-	blockTexture->render(mPosX, mPosY);
+	for (size_t i{ 0 }; i < numberOfPieces; ++i) {
+		blockTexture->render(mPosX + (i * 60), mPosY);
+	}
 }
 
 bool LBlock::getIsFalling() {
@@ -183,6 +201,10 @@ int LBlock::getColumn() {
 
 int LBlock::getRow() {
 	return row;
+}
+
+void LBlock::addRow() {
+	row++;
 }
 
 //Timer Definitions

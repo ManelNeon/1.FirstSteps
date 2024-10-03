@@ -1,2 +1,3 @@
-﻿  main.cpp
+﻿  textureClasses.cpp
+C:\GameDev\Programacao\NoEngineProjects\C++Learning\SDLTetris\textureClasses.cpp(190,30): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
   SDLGame.vcxproj -> C:\GameDev\Programacao\NoEngineProjects\C++Learning\SDLTetris\x64\Debug\SDLGame.exe

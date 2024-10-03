@@ -281,6 +281,10 @@ int main(int argc, char* args[])
 				return quitGame();
 			}
 
+			if (pBlock->numberOfPieces == 2) {
+				digitalBoard[pBlock->getRow() * 8 + (pBlock->getColumn()+ 1)] = pBlock;
+			}
+
 			//if the block is not falling, then we save it in the digital board and we put the pBlock to null
 			digitalBoard[pBlock->getRow() * 8 + pBlock->getColumn()] = pBlock;
 			pBlock = NULL;
@@ -300,12 +304,15 @@ int main(int argc, char* args[])
 				for (int i{ 0 }; i < 8; ++i) {
 					for (int y{ 9 }; y >= 0; --y) {
 						if (y == currentRow) {
-							delete digitalBoard[currentRow * 8 + i];
-							digitalBoard[currentRow * 8 + i] = NULL;
+							if (digitalBoard[currentRow * 8 + i]) {
+								delete digitalBoard[currentRow * 8 + i];
+								digitalBoard[currentRow * 8 + i] = NULL;
+							}
 						}
 						else if (digitalBoard[y * 8 + i]) {
 							LBlock* currentBlock = digitalBoard[y * 8 + i];
 							digitalBoard[y * 8 + i] = NULL;
+							currentBlock->addRow();
 							currentBlock->moveDown();
 							digitalBoard[currentBlock->getRow() * 8 + currentBlock->getColumn()] = currentBlock;
 						}

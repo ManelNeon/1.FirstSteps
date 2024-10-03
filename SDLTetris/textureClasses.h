@@ -66,6 +66,10 @@ public:
 
 	int getRow();
 
+	void addRow();
+
+	int numberOfPieces;
+
 private:
 	int mPosX, mPosY;
 	
