@@ -6,6 +6,9 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
+//Standard Libraries
+#include <vector>
+
 //Header Files
 #include "textureClasses.h"
 
@@ -38,7 +41,7 @@ extern Mix_Chunk* gLineCleared;
 
 extern int gScore;
 
-extern LBlock* pBlock;
+extern std::vector<LBlock*> pBlock;
 
 extern TTF_Font* gFont;
 

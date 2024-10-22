@@ -25,7 +25,7 @@ Mix_Chunk* gLineCleared = NULL;
 
 int gScore = NULL;
 
-LBlock* pBlock = NULL;
+std::vector<LBlock*> pBlock = {NULL, NULL, NULL, NULL, NULL};
 
 TTF_Font* gFont = NULL;
 

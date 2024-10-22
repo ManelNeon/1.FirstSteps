@@ -1,3 +1,10 @@
+//OBJECTIVES FOR FUTURE MANEL:
+//- MAKE THE TWO BLOCK MORE CONSISTENT, STILL HAS BUGS, FIGURE OUT WHY AND FIX THEM
+//- DIVIDE THE MAIN FUNCTION INTO DIFFERENT FUNCTIONS, IT'S TOO CLUTTERED RIGHT NOW, YOU CAN DO BETTER
+//- THESE DIFFERENT FUNCTIONS CAN BE: UPDATE, RENDER, VERIFYBLOCK
+//THESE ARE YOUR OBJECTIVES FOR NOW, WHEN YOU TOUCH THIS PROJECT, THIS IS WHAT YOU SHOULD BE DOING
+
+
 //SDL Libraries
 #include <SDL.h>
 #include <SDL_image.h>
@@ -140,18 +147,6 @@ void close()
 	SDL_Quit();
 }
 
-void update() {
-
-}
-
-void handleEvents() {
-
-}
-
-void render() {
-
-}
-
 //Quits the game
 int quitGame() {
 
@@ -160,8 +155,11 @@ int quitGame() {
 		digitalBoard[i] = NULL;
 	}
 
-	delete pBlock;
-	pBlock = NULL;
+	for (size_t i{ 0 }; i < pBlock.size(); ++i) {
+		delete pBlock[i];
+		pBlock[i] = NULL;
+	}
+	
 	close();
 	return 0;
 }
@@ -191,10 +189,14 @@ int main(int argc, char* args[])
 
 	blockFallTimer.start();
 
+	int sizeOfBlock = 0;
+
 	Mix_VolumeMusic(25);
 
 	//While application is running
 	while (true){
+
+		return 2;
 
 		if (Mix_PlayingMusic() == 0) {
 			Mix_PlayMusic(gMusic, -1);
@@ -206,8 +208,14 @@ int main(int argc, char* args[])
 		update();
 
 		//in here we check if pBlock is NULL, in case it is, we allocate new memory and basically create a new block
-		if (pBlock == NULL) {
-			pBlock = new LBlock;
+		if (pBlock[0] == NULL) {
+
+			sizeOfBlock = rand() % 2 + 1;
+
+			for (size_t i{ 0 }; i < sizeOfBlock; ++i) {
+				pBlock[i] = new LBlock;
+				pBlock[i]->setNewPosition(i);
+			}
 		}
 
 		handleEvents();
@@ -221,12 +229,18 @@ int main(int argc, char* args[])
 			}
 
 			//we move the block the player is controlling
-			pBlock->handleEvent(e);
+			for (size_t i{ 0 }; i < sizeOfBlock; ++i) {
+				pBlock[i]->handleEvent(e);
+			}
+			//pBlock[0]->handleEvent(e);
 		}		
 
 		//every 2 seconds we move the block down, and restart the timer
 		if (blockFallTimer.getTicks() >= 500) {
-			pBlock->move();
+			for (size_t i{ 0 }; i < sizeOfBlock; ++i) {
+				pBlock[i]->move();
+			}
+			//pBlock[0]->move();
 			blockFallTimer.stop();
 			blockFallTimer.start();
 		}
@@ -253,7 +267,10 @@ int main(int argc, char* args[])
 		}
 
 		//rendering the block the player is controlling
-		pBlock->render(&gBlockTexture);
+		for (size_t i{ 0 }; i < sizeOfBlock; ++i) {
+			pBlock[i]->render(&gBlockTexture);
+		}
+		//pBlock[0]->render(&gBlockTexture);
 
 		//Drawing a line
 		SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 0);
@@ -271,23 +288,24 @@ int main(int argc, char* args[])
 		//CHECKS
 
 		//in here we check if the block is still falling
-		if (!pBlock->getIsFalling()) {
+		if (!pBlock[0]->getIsFalling()) {
 
 			bool lineDone = true;
 
-			int currentRow = pBlock->getRow();
+			int currentRow = pBlock[0]->getRow();
 
-			if (pBlock->getRow() == 0) {
+			if (pBlock[0]->getRow() == 0) {
 				return quitGame();
 			}
 
-			if (pBlock->numberOfPieces == 2) {
-				digitalBoard[pBlock->getRow() * 8 + (pBlock->getColumn()+ 1)] = pBlock;
+			for (size_t i{ 0 }; i < sizeOfBlock; ++i) {
+				digitalBoard[pBlock[i]->getRow() * 8 + pBlock[i]->getColumn()] = pBlock[i];
+				pBlock[i] = NULL;
 			}
 
 			//if the block is not falling, then we save it in the digital board and we put the pBlock to null
-			digitalBoard[pBlock->getRow() * 8 + pBlock->getColumn()] = pBlock;
-			pBlock = NULL;
+			//digitalBoard[pBlock[0]->getRow() * 8 + pBlock[0]->getColumn()] = pBlock[0];
+			//pBlock[0] = NULL;
 
 			//first we check if the whole line is covered
 			for (size_t i{ 0 }; i < 8; ++i) {

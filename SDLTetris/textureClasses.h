@@ -68,7 +68,7 @@ public:
 
 	void addRow();
 
-	int numberOfPieces;
+	void setNewPosition(int column);
 
 private:
 	int mPosX, mPosY;

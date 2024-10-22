@@ -131,13 +131,11 @@ LBlock::LBlock() {
 
 	column = 0;
 	row = 0;
-
-	numberOfPieces = rand() % 2 + 1;
 }
 
 void LBlock::handleEvent(SDL_Event& e) {
 
-	if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
+	if (e.type == SDL_KEYDOWN && e.key.repeat == 0 && isFalling) {
 		switch (e.key.keysym.sym) {;
 			case SDLK_RIGHT:
 				if (!digitalBoard[row * 8 + (column + 1)] && column + 1 <= 7) {
@@ -186,9 +184,7 @@ void LBlock::moveDown() {
 }
 
 void LBlock::render(LTexture* blockTexture) {
-	for (size_t i{ 0 }; i < numberOfPieces; ++i) {
-		blockTexture->render(mPosX + (i * 60), mPosY);
-	}
+	blockTexture->render(mPosX, mPosY);
 }
 
 bool LBlock::getIsFalling() {
@@ -205,6 +201,11 @@ int LBlock::getRow() {
 
 void LBlock::addRow() {
 	row++;
+}
+
+void LBlock::setNewPosition(int column) {
+	this->column = column;
+	mPosX = 60 * column;
 }
 
 //Timer Definitions
