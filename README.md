@@ -13,3 +13,6 @@ Now I can confidently say I'm comfortable using pointers, memory management and 
 
 One last note: none of this would have been possible without Inês Lagarto, who introduced me to Tom Pickering. A great teacher and someone who always finds the time to answer my emails, even though most of them are 1000+ words long 🤣 ! 
 Both of their support and guidance made a world of difference on this journey!
+
+
+19/11/2024 - A little Update, I am not at all going to archive this project, while I do not have the free time I had in the summer, I still like to go to my Tetris project and add little things. Also, C++ is such a complex language, that archiving this project would be like, ye there's nothing more for me to learn, which is not at all true.
